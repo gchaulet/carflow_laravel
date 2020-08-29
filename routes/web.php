@@ -19,11 +19,12 @@ Route::get('/', function () {
 Route::prefix('user')->group(function () {
     Route::get('/', 'UserController@index')->name('user.index');
     Route::get('/create', 'UserController@create')->name('user.create');
-    Route::get('/show/{user}', 'UserController@show')->name('user.show');
+    Route::get('/getdata', 'UserController@getUsers')->name('user.getdata');
+    Route::get('/show/{id}', 'UserController@show')->name('user.show');
     Route::post('/store', 'UserController@store')->name('user.store');
-    Route::get('/edit/{user}', 'UserController@edit')->name('user.edit');
-    Route::post('/update', 'UserController@update')->name('user.update');
-    Route::get('/delete/{user}', 'UserController@delete')->name('user.delete');
+    Route::get('/edit/{id}', 'UserController@edit')->name('user.edit');
+    Route::post('/update/{id?}', 'UserController@update')->name('user.update');
+    Route::get('/delete/{id}', 'UserController@delete')->name('user.delete');
 });
 
 Route::prefix('car')->group(function () {
@@ -46,3 +47,11 @@ Route::prefix('reservation')->group(function () {
     Route::get('/delete/{reservation}', 'ReservationController@delete')->name('reservation.delete');
 });
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
